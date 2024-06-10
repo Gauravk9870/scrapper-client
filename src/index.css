@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@font-face {
+    font-family: "Regular";
+    src: local('Helvetica'), url('./assets/fonts/Helvetica.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: "Bold";
+    src: local('Helvetica-Bold'), url('./assets/fonts/Helvetica-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: "BoldOblique";
+    src: local('Helvetica-BoldOblique'), url('./assets/fonts/Helvetica-BoldOblique.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: "Oblique";
+    src: local('Helvetica-Oblique'), url('./assets/fonts/Helvetica-Oblique.ttf') format('truetype');
+}
+
+.scrollbar-hide{
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
