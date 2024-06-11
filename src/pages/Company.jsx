@@ -1,5 +1,4 @@
 import Header from "../components/Header";
-import CompanyLogo from "../assets/Comp-Logo.png";
 import PhoneCall from "../assets/phone-call.svg";
 import Mail from "../assets/mail-search.svg";
 import Globe from "../assets/globe.svg";
@@ -10,25 +9,10 @@ import Instagram from "../assets/instagram-outline.svg";
 import Twitter from "../assets/twitter-outline.svg";
 import Linkedin from "../assets/linkedin-outline.svg";
 import Camera from "../assets/camera.svg";
-import ScrrenshotPreview from "../assets/scrrenshot-preview.png";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { config } from "../utils/config";
 import axios from "axios";
-
-// {
-//   "_id": "6668b3a78ad586b3a286520b",
-//   "url": "https://nextui.org/",
-//   "title": "NextUI - Beautiful, fast and modern React UI Library",
-//   "description": "Make beautiful websites regardless of your design experience.",
-//   "facebook": "",
-//   "twitter": "https://twitter.com/getnextui",
-//   "screenshot": "https://res.cloudinary.com/dcrokdpjt/image/upload/v1718137768/mv7nwix2byh4pdh7s0y2.png",
-//   "favicon": "https://nextui.org/favicon-32x32.png",
-//   "createdAt": "2024-06-11T20:29:27.636Z",
-//   "updatedAt": "2024-06-11T20:29:27.636Z",
-//   "__v": 0
-// }
 
 const Company = () => {
   const { id } = useParams();
