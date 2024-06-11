@@ -5,10 +5,16 @@ import Linkedin from "../assets/linkedIn.svg";
 import { data } from "../utils/data";
 import ChevronLeft from "../assets/chevron-left.svg";
 import ChevronRight from "../assets/chevron-right.svg";
+import { useNavigate } from "react-router-dom";
 
 const Table = () => {
+  const navigate = useNavigate();
+
+  const handleClick = (company) => {
+    navigate(`/${company}`);
+  };
   return (
-    <div className=" p-[4px] pb-3 ">
+    <div className="p-[5px]">
       <div className=" rounded-[4px] py-3 px-0 border border-[#ECECEC] bg-[#fff]">
         <div className="py-[10px] pl-[10px] pr-[15px] flex items-center gap-[10px]">
           <div className=" min-w-[98px]">
@@ -60,9 +66,18 @@ const Table = () => {
             </thead>
             <tbody>
               {data.map((item) => (
-                <tr key={item.id} className=" border">
+                <tr
+                  key={item.id}
+                  className=" border cursor-pointer"
+                  onClick={() => handleClick(item.name)}
+                >
                   <td className=" p-[14.4px]">
-                    <input type="checkbox" name="" id="" />
+                    <input
+                      type="checkbox"
+                      name=""
+                      id=""
+                      onClick={(e) => e.stopPropagation()}
+                    />
                   </td>
                   <td className=" py-[9px] px-[4px]">
                     <img

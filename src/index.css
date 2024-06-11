@@ -23,7 +23,11 @@
     src: local('Helvetica-Oblique'), url('./assets/fonts/Helvetica-Oblique.ttf') format('truetype');
 }
 
-.scrollbar-hide{
+body {
+    background: #F6F6F4;
+}
+
+.scrollbar-hide {
     scrollbar-width: none;
     -ms-overflow-style: none;
 }
