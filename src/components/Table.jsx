@@ -97,11 +97,14 @@ const Table = () => {
 
   const fetchData = async () => {
     try {
+      setIsLoading(true);
       const response = await axios.get(`${config.server}/api/scrape`);
       setData(response.data);
       console.log("REsponse:", response.data);
     } catch (error) {
       console.error("Error:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -112,7 +115,7 @@ const Table = () => {
   return (
     <>
       <div className="p-[5px]">
-        <div className=" rounded-[4px] py-3 px-0 border border-[#ECECEC] bg-[#fff]">
+        <div className=" w-full rounded-[4px] py-3 px-0 border border-[#ECECEC] bg-[#fff]">
           <div className="py-[10px] pl-[10px] pr-[15px] flex items-center gap-[10px]">
             <div className=" min-w-[98px]">
               <span className=" font-[500] text-xs text-[#334155]">
@@ -134,8 +137,8 @@ const Table = () => {
               Export as CSV
             </button>
           </div>
-          <div className=" w-full overflow-scroll md:h-[calc(100vh-232px)]">
-            <table className=" w-full">
+          <div className=" w-full overflow-y-scroll md:h-[calc(100vh-232px)]">
+            <table className=" w-full ">
               <thead>
                 <tr>
                   <th className=" font-[600] text-[10.8px] leading-[16.2px] text-[#6B7280] uppercase p-[14.4px] bg-[#F9FAFB] text-left">
@@ -197,27 +200,41 @@ const Table = () => {
                     </td>
                     <td className=" p-[14.4px] ">
                       <ul className=" w-full flex items-center gap-[10px]">
-                        <li className=" cursor-pointer">
-                          <img
-                            src={Facebook}
-                            alt="facebook"
-                            className=" w-[15px] h-[15px]"
-                          />
-                        </li>
-                        <li className=" cursor-pointer">
-                          <img
-                            src={Twitter}
-                            alt="twitter"
-                            className=" w-[15px] h-[15px]"
-                          />
-                        </li>
-                        <li className=" cursor-pointer">
-                          <img
-                            src={Linkedin}
-                            alt="linkedin"
-                            className=" w-[15px] h-[15px]"
-                          />
-                        </li>
+                        {item?.facebook && (
+                          <li className=" cursor-pointer">
+                            <a href={item?.facebook}>
+                              <img
+                                src={Facebook}
+                                alt="facebook"
+                                className=" w-[15px] h-[15px]"
+                              />
+                            </a>
+                          </li>
+                        )}
+                        {item?.twitter && (
+                          <li className=" cursor-pointer">
+                            <a href={item?.twitter}>
+                              {" "}
+                              <img
+                                src={Twitter}
+                                alt="twitter"
+                                className=" w-[15px] h-[15px]"
+                              />
+                            </a>
+                          </li>
+                        )}
+
+                        {item?.linkedIn && (
+                          <li className=" cursor-pointer">
+                            <a href={item?.linkedIn}>
+                              <img
+                                src={Linkedin}
+                                alt="linkedin"
+                                className=" w-[15px] h-[15px]"
+                              />
+                            </a>
+                          </li>
+                        )}
                       </ul>
                     </td>
                     <td className=" p-[14.4px] font-[400] text-[12.6px] leading-[15.25px] text-[#6B7280] hidden sm:table-cell">
@@ -231,7 +248,9 @@ const Table = () => {
                         : "No Address"}
                     </td>
                     <td className=" p-[14.4px] font-[400] text-[12.6px] leading-[15.25px] text-[#6C2BD9] hidden md:table-cell">
-                      (573)-467-7494
+                      {item?.phoneNumber
+                        ? item?.phoneNumber
+                        : "No Phone number"}
                     </td>
                     <td className="p-[14.4px] font-[400] text-[12.6px] leading-[15.25px] text-[#6C2BD9] hidden md:table-cell">
                       Email

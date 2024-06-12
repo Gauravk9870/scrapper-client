@@ -61,7 +61,9 @@ const Company = () => {
             to={`/${currentPath}`}
             className=" font-[500] text-sm text-[#374151]"
           >
-            {company?.title}
+            {company?.title.length > 20
+              ? company?.title.substring(0, 20) + "..."
+              : company?.title}{" "}
           </Link>
         </div>
       </nav>
@@ -108,7 +110,9 @@ const Company = () => {
                         </span>
                       </h6>
                       <p className=" font-[400] text-[16px] leading-[24px] text-black">
-                        (573)-456-4644
+                        {company?.phoneNumber
+                          ? company?.phoneNumber
+                          : "No Phone Found"}
                       </p>
                     </div>
                     <div>
@@ -119,7 +123,7 @@ const Company = () => {
                         </span>
                       </h6>
                       <p className=" font-[400] text-[16px] leading-[24px] text-black">
-                        contact@netflix.com{" "}
+                        {company?.email ? company?.email : "No Email Found"}
                       </p>
                     </div>
                   </div>
@@ -155,37 +159,41 @@ const Company = () => {
                 </a>
               </div>
 
-              <div>
-                <h3 className=" flex gap-[5px]">
-                  <img
-                    src={Description}
-                    alt="description"
-                    className="w-[25px] h-[25px] object-contain"
-                  />
-                  <span className="font-[600] text-[14px] leading-[21px] text-[#64748B]">
-                    Description{" "}
-                  </span>
-                </h3>
-                <p className=" font-[400] text-[16px] leading-[24px] text-black">
-                  {company?.description}
-                </p>
-              </div>
+              {company?.description && (
+                <div>
+                  <h3 className=" flex gap-[5px]">
+                    <img
+                      src={Description}
+                      alt="description"
+                      className="w-[25px] h-[25px] object-contain"
+                    />
+                    <span className="font-[600] text-[14px] leading-[21px] text-[#64748B]">
+                      Description{" "}
+                    </span>
+                  </h3>
+                  <p className=" font-[400] text-[16px] leading-[24px] text-black">
+                    {company?.description}
+                  </p>
+                </div>
+              )}
 
-              <div>
-                <h3 className=" flex gap-[5px]">
-                  <img
-                    src={LocationMarker}
-                    alt="email"
-                    className="w-[25px] h-[25px] object-contain"
-                  />
-                  <span className="font-[600] text-[14px] leading-[21px] text-[#64748B]">
-                    Email
-                  </span>
-                </h3>
-                <p className=" font-[400] text-[16px] leading-[24px] text-black">
-                  contact@netflix.com
-                </p>
-              </div>
+              {company?.email && (
+                <div>
+                  <h3 className=" flex gap-[5px]">
+                    <img
+                      src={LocationMarker}
+                      alt="email"
+                      className="w-[25px] h-[25px] object-contain"
+                    />
+                    <span className="font-[600] text-[14px] leading-[21px] text-[#64748B]">
+                      Email
+                    </span>
+                  </h3>
+                  <p className=" font-[400] text-[16px] leading-[24px] text-black">
+                    {company?.email}
+                  </p>
+                </div>
+              )}
 
               {company?.facebook && (
                 <div>
@@ -250,7 +258,7 @@ const Company = () => {
                 </div>
               )}
 
-              {company?.linkedin && (
+              {company?.linkedIn && (
                 <div>
                   <h3 className=" flex gap-[5px]">
                     <img
@@ -263,32 +271,34 @@ const Company = () => {
                     </span>
                   </h3>
                   <a
-                    href={company?.linkedin}
+                    href={company?.linkedIn}
                     className=" font-[400] text-[16px] leading-[24px] text-[#6C2BD9]"
                   >
-                    {company?.linkedin}
+                    {company?.linkedIn}
                   </a>
                 </div>
               )}
 
-              <div>
-                <h3 className=" flex gap-[5px]">
-                  <img
-                    src={LocationMarker}
-                    alt="address"
-                    className="w-[25px] h-[25px] object-contain"
-                  />
-                  <span className="font-[600] text-[14px] leading-[21px] text-[#64748B]">
-                    Address
-                  </span>
-                </h3>
-                <p className=" font-[400] text-[16px] leading-[24px] text-[#000000]">
-                  San Francisco, United States{" "}
-                </p>
-              </div>
+              {company?.addresses.length > 0 && (
+                <div>
+                  <h3 className=" flex gap-[5px]">
+                    <img
+                      src={LocationMarker}
+                      alt="address"
+                      className="w-[25px] h-[25px] object-contain"
+                    />
+                    <span className="font-[600] text-[14px] leading-[21px] text-[#64748B]">
+                      Address
+                    </span>
+                  </h3>
+                  <p className=" font-[400] text-[16px] leading-[24px] text-[#000000]">
+                    San Francisco, United States{" "}
+                  </p>
+                </div>
+              )}
             </div>
           </div>
-          <div className=" bg-[#fff] rounded-[5px] border border-[#ECECEC] p-[30px] flex flex-col gap-[10px]">
+          <div className=" flex-1 bg-[#fff] rounded-[5px] border border-[#ECECEC] p-[30px] flex flex-col gap-[10px] ">
             <div className=" flex py-0 px-[10px] gap-[10px] items-center">
               <img
                 src={Camera}
